@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kingdom Works Outsourcing — Excellence in Service. Led by Christ.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Brand tokens ── */
+    :root {
+      --bg:          #0d1f33;
+      --navy:        #1b3a5c;
+      --navy-mid:    #3a6a9a;
+      --ivory:       #f7f2ea;
+      --ivory-soft:  #f0e6d0;
+      --ivory-card:  #faf7f2;
+      --sage:        #7aab84;
+      --muted:       #d6c9b0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ivory);
+      font-family: 'Jost', Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: .3px;
+    }
+
+    /* Headings use Cormorant Garamond */
+    h1, h2, h3, .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    /* Hero glow — navy-to-sage */
+    .hero-glow {
+      position: absolute;
+      bottom: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 420px;
+      background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(27,58,92,0.55) 0%, rgba(122,171,132,0.12) 55%, transparent 72%);
+      pointer-events: none;
+    }
+
+    /* Faint star-field */
+    .stars {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, rgba(247,242,234,0.14) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 10%, rgba(247,242,234,0.10) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 65%, rgba(122,171,132,0.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 75%, rgba(247,242,234,0.07) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(247,242,234,0.03);
+      border: 1px solid rgba(247,242,234,0.08);
+      border-radius: 16px;
+      transition: border-color .25s, background .25s;
+    }
+    .card:hover {
+      border-color: rgba(122,171,132,0.35);
+      background: rgba(122,171,132,0.05);
+    }
+
+    /* Badge pills */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(122,171,132,0.12);
+      border: 1px solid rgba(122,171,132,0.28);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--sage);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .badge-navy {
+      background: rgba(27,58,92,0.4);
+      border-color: rgba(58,106,154,0.4);
+      color: var(--ivory-soft);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--sage);
+      color: var(--bg);
+      font-family: 'Jost', sans-serif;
+      font-weight: 600; font-size: 0.875rem;
+      letter-spacing: .06em;
+      padding: 12px 26px;
+      border-radius: 100px; border: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-primary:active { transform: scale(.97); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--ivory);
+      font-family: 'Jost', sans-serif;
+      font-weight: 500; font-size: 0.875rem;
+      letter-spacing: .04em;
+      padding: 11px 26px;
+      border-radius: 100px;
+      border: 1px solid rgba(247,242,234,0.22);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      border-color: rgba(247,242,234,0.5);
+      background: rgba(247,242,234,0.05);
+    }
+
+    /* Gradient text: ivory → sage */
+    .grad-text {
+      background: linear-gradient(135deg, var(--ivory) 0%, var(--ivory-soft) 45%, var(--sage) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Step numbers: navy-mid → sage */
+    .step-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 4rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--navy-mid), var(--sage));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    /* HR glow */
+    .hr-glow {
+      border: none; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(58,106,154,0.45) 40%, rgba(122,171,132,0.4) 60%, transparent 100%);
+    }
+
+    /* Grid background for hero */
+    .grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(247,242,234,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(247,242,234,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 80%);
+    }
+
+    /* Scroll fade */
+    .fu { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1); }
+    .fu.vis { opacity: 1; transform: none; }
+    .d1 { transition-delay: .07s; } .d2 { transition-delay: .14s; }
+    .d3 { transition-delay: .21s; } .d4 { transition-delay: .28s; }
+
+    /* Navbar */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s, backdrop-filter .3s; }
+    #nav.scrolled {
+      background: rgba(13,31,51,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(247,242,234,0.07);
+    }
+
+    /* Mobile menu */
+    #mob-menu { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    #mob-menu.open { max-height: 420px; }
+
+    /* Testimonial card */
+    .tcard {
+      background: rgba(27,58,92,0.25);
+      border: 1px solid rgba(247,242,234,0.08);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color .25s;
+    }
+    .tcard:hover { border-color: rgba(122,171,132,0.28); }
+
+    /* Select arrow */
+    select.f-inp {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%237aab84'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 1.1rem;
+      appearance: none;
+    }
+
+    /* Form inputs */
+    .f-inp {
+      width: 100%;
+      background: rgba(247,242,234,0.04);
+      border: 1px solid rgba(247,242,234,0.12);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--ivory);
+      font-family: 'Jost', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .f-inp::placeholder { color: rgba(247,242,234,0.3); }
+    .f-inp:focus { border-color: rgba(122,171,132,0.6); }
+
+    /* Icon wrap */
+    .icon-wrap {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Focus ring */
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; border-radius: 4px; }
+
+    /* Responsive type */
+    .h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -.03em;
+    }
+    .h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+    }
+    .jost { font-family: 'Jost', sans-serif; }
+
+    /* Checklist check */
+    .check-circle {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(122,171,132,0.15);
+      border: 1px solid rgba(122,171,132,0.32);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="nav">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px; height:72px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+
+    <!-- Logo: bg-[#1b3a5c] wrapper makes Logo.png blend seamlessly -->
+    <a href="#" style="display:flex; align-items:center; flex-shrink:0;">
+      <div style="background:#1b3a5c; border-radius:8px; line-height:0;">
+        <img src="brand_assets/Logo.png" alt="Kingdom Works Outsourcing" style="height:46px; width:auto; display:block;">
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <div id="nav-links" style="display:none; gap:32px; align-items:center;">
+      <a href="#services"     class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Services</a>
+      <a href="#why-us"       class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Why Us</a>
+      <a href="#process"      class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Process</a>
+      <a href="#testimonials" class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Testimonials</a>
+    </div>
+
+    <!-- Desktop CTA -->
+    <div id="nav-cta" style="display:none; align-items:center; gap:14px; flex-shrink:0;">
+      <a href="#contact" class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Contact</a>
+      <a href="#contact" class="btn-primary" style="padding:9px 22px; font-size:.82rem;">Get Started</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button id="ham" aria-label="Toggle menu" style="background:none; border:none; cursor:pointer; color:var(--ivory); padding:4px; display:flex;">
+      <svg id="ham-open"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      <svg id="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mob-menu" style="background:rgba(13,31,51,0.97); border-top:1px solid rgba(247,242,234,.07);">
+    <div style="max-width:1200px; margin:0 auto; padding:16px 24px 24px; display:flex; flex-direction:column; gap:4px;">
+      <a href="#services"     class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Services</a>
+      <a href="#why-us"       class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Why Us</a>
+      <a href="#process"      class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Process</a>
+      <a href="#testimonials" class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Testimonials</a>
+      <a href="#contact"      class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none;">Contact</a>
+      <a href="#contact" class="btn-primary" style="margin-top:14px; justify-content:center;">Get Started →</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ── HERO ── -->
+<section style="position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:120px 24px 80px; overflow:hidden;">
+  <div class="stars"></div>
+  <div class="grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <!-- Decorative faint cross -->
+  <div style="position:absolute; right:7%; top:50%; transform:translateY(-50%); opacity:.05; pointer-events:none; display:none;" id="deco-cross">
+    <svg width="220" height="290" viewBox="0 0 220 290" fill="none">
+      <circle cx="110" cy="11" r="11" fill="#7aab84"/>
+      <rect x="98" y="0" width="24" height="290" rx="12" fill="#f0e6d0"/>
+      <rect x="0" y="86" width="220" height="24" rx="12" fill="#f0e6d0"/>
+    </svg>
+  </div>
+
+  <div style="position:relative; z-index:10; max-width:840px; margin:0 auto;">
+
+    <div class="fu badge" style="margin-bottom:24px;">
+      <svg width="7" height="7" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+      Faith-Driven Outsourcing Agency
+    </div>
+
+    <h1 class="fu d1 h1" style="margin-bottom:24px;">
+      <span class="grad-text">Excellence in Service.</span><br>
+      <em style="font-style:italic; color:var(--ivory-soft);">Led by Christ.</em>
+    </h1>
+
+    <p class="fu d2 jost" style="font-size:clamp(1rem,2vw,1.15rem); color:rgba(247,242,234,.62); max-width:580px; margin:0 auto 36px; line-height:1.7; font-weight:300;">
+      Kingdom Works Outsourcing connects businesses worldwide with skilled, faith-driven Filipino professionals — delivering high-quality work, on time, every time.
+    </p>
+
+    <div class="fu d3" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:56px;">
+      <a href="#contact" class="btn-primary">Start Working Together →</a>
+      <a href="#services" class="btn-outline">View Our Services</a>
+    </div>
+
+    <!-- Stats pills -->
+    <div class="fu d4" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
+      <div style="background:rgba(27,58,92,.4); border:1px solid rgba(58,106,154,.35); border-radius:100px; padding:8px 20px; font-family:'Jost',sans-serif; font-size:.82rem; color:rgba(247,242,234,.6);">
+        <span style="color:#7aab84; font-weight:600;">100+</span> clients served
+      </div>
+      <div style="background:rgba(27,58,92,.4); border:1px solid rgba(58,106,154,.35); border-radius:100px; padding:8px 20px; font-family:'Jost',sans-serif; font-size:.82rem; color:rgba(247,242,234,.6);">
+        <span style="color:#7aab84; font-weight:600;">98%</span> satisfaction rate
+      </div>
+      <div style="background:rgba(27,58,92,.4); border:1px solid rgba(58,106,154,.35); border-radius:100px; padding:8px 20px; font-family:'Jost',sans-serif; font-size:.82rem; color:rgba(247,242,234,.6);">
+        <span style="color:#7aab84; font-weight:600;">5+</span> years of excellence
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero dashboard card -->
+  <div class="fu" style="position:relative; z-index:10; margin-top:64px; max-width:900px; width:100%;">
+    <div style="background:rgba(27,58,92,.22); border:1px solid rgba(247,242,234,.1); border-radius:20px; padding:28px; position:relative; overflow:hidden;">
+      <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(27,58,92,.4) 0%, transparent 65%); pointer-events:none;"></div>
+
+      <!-- Window chrome -->
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:22px;">
+        <div style="width:11px; height:11px; border-radius:50%; background:rgba(247,242,234,.14);"></div>
+        <div style="width:11px; height:11px; border-radius:50%; background:rgba(247,242,234,.14);"></div>
+        <div style="width:11px; height:11px; border-radius:50%; background:rgba(247,242,234,.14);"></div>
+        <div style="flex:1; height:26px; background:rgba(247,242,234,.05); border-radius:8px; margin-left:8px; display:flex; align-items:center; padding:0 12px;">
+          <span style="font-family:'Jost',sans-serif; font-size:.72rem; color:rgba(247,242,234,.28);">kingdomworksoutsourcing.com/dashboard</span>
+        </div>
+      </div>
+
+      <!-- Dashboard layout -->
+      <div style="display:grid; grid-template-columns:210px 1fr; gap:14px; height:250px;">
+        <!-- Sidebar -->
+        <div style="background:rgba(13,31,51,.6); border:1px solid rgba(247,242,234,.07); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px;">
+          <div style="font-family:'Jost',sans-serif; font-size:.68rem; color:rgba(247,242,234,.3); text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px;">Your Team</div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#1b3a5c,#7aab84);"></div>
+            <div><div style="font-family:'Jost',sans-serif; font-size:.8rem; color:rgba(247,242,234,.85); font-weight:500;">Virtual Assistant</div><div style="font-family:'Jost',sans-serif; font-size:.7rem; color:#7aab84;">● Active</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#3a6a9a,#1b3a5c);"></div>
+            <div><div style="font-family:'Jost',sans-serif; font-size:.8rem; color:rgba(247,242,234,.85); font-weight:500;">Admin Support</div><div style="font-family:'Jost',sans-serif; font-size:.7rem; color:#7aab84;">● Active</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#7aab84,#3a6a9a);"></div>
+            <div><div style="font-family:'Jost',sans-serif; font-size:.8rem; color:rgba(247,242,234,.85); font-weight:500;">Social Media</div><div style="font-family:'Jost',sans-serif; font-size:.7rem; color:#7aab84;">● Active</div></div>
+          </div>
+          <div style="height:1px; background:rgba(247,242,234,.06); margin:2px 0;"></div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:30px; height:30px; border-radius:50%; background:rgba(247,242,234,.07);"></div>
+            <div style="font-family:'Jost',sans-serif; font-size:.8rem; color:rgba(247,242,234,.35); font-weight:500;">+ Add role</div>
+          </div>
+        </div>
+
+        <!-- Main metrics -->
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+            <div style="background:rgba(122,171,132,.1); border:1px solid rgba(122,171,132,.22); border-radius:10px; padding:14px;">
+              <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:#7aab84; line-height:1;">47</div>
+              <div style="font-family:'Jost',sans-serif; font-size:.7rem; color:rgba(247,242,234,.5);">Tasks Done This Week</div>
+            </div>
+            <div style="background:rgba(58,106,154,.15); border:1px solid rgba(58,106,154,.25); border-radius:10px; padding:14px;">
+              <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:#f0e6d0; line-height:1;">98%</div>
+              <div style="font-family:'Jost',sans-serif; font-size:.7rem; color:rgba(247,242,234,.5);">On-Time Delivery</div>
+            </div>
+            <div style="background:rgba(247,242,234,.04); border:1px solid rgba(247,242,234,.08); border-radius:10px; padding:14px;">
+              <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:rgba(247,242,234,.88); line-height:1;">★ 5.0</div>
+              <div style="font-family:'Jost',sans-serif; font-size:.7rem; color:rgba(247,242,234,.5);">Client Rating</div>
+            </div>
+          </div>
+
+          <!-- Bar chart -->
+          <div style="flex:1; background:rgba(13,31,51,.5); border:1px solid rgba(247,242,234,.07); border-radius:10px; padding:14px; display:flex; flex-direction:column; justify-content:flex-end; gap:4px;">
+            <div style="font-family:'Jost',sans-serif; font-size:.7rem; color:rgba(247,242,234,.3); margin-bottom:8px;">Tasks Completed — Last 7 Days</div>
+            <div style="display:flex; align-items:flex-end; gap:6px; height:76px;">
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:55%; opacity:.75;"></div>
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:70%; opacity:.8;"></div>
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:58%; opacity:.75;"></div>
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:88%;"></div>
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:68%; opacity:.8;"></div>
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:82%;"></div>
+              <div style="flex:1; background:linear-gradient(to top,#1b3a5c,#7aab84); border-radius:4px 4px 0 0; height:100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── DIVIDER ── -->
+<div style="padding:0 24px;"><hr class="hr-glow"></div>
+
+
+<!-- ── SERVICES ── -->
+<section id="services" style="padding:100px 24px; max-width:1200px; margin:0 auto;">
+  <div class="fu" style="text-align:center; margin-bottom:64px;">
+    <div class="badge" style="margin:0 auto 16px;">Our Services</div>
+    <h2 class="h2" style="margin-bottom:16px;">Everything your business needs,<br><span class="grad-text">handled with excellence.</span></h2>
+    <p class="jost" style="color:rgba(247,242,234,.55); max-width:520px; margin:0 auto; font-size:1.05rem; line-height:1.7; font-weight:300;">Skilled Filipino professionals across every support function — all driven by a culture of faith, diligence, and integrity.</p>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+
+    <div class="card fu">
+      <div style="padding:28px;">
+        <div class="icon-wrap" style="background:rgba(122,171,132,.14); margin-bottom:16px;">
+          <svg width="22" height="22" fill="none" stroke="#7aab84" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--ivory); margin-bottom:8px; letter-spacing:-.01em;">Virtual Assistant</h3>
+        <p class="jost" style="font-size:.88rem; color:rgba(247,242,234,.52); line-height:1.7; font-weight:300;">Dedicated VAs who manage your schedule, inbox, and tasks — freeing you to focus on growth.</p>
+        <div class="jost" style="margin-top:16px; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Learn more →</div>
+      </div>
+    </div>
+
+    <div class="card fu d1">
+      <div style="padding:28px;">
+        <div class="icon-wrap" style="background:rgba(58,106,154,.15); margin-bottom:16px;">
+          <svg width="22" height="22" fill="none" stroke="#3a6a9a" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--ivory); margin-bottom:8px; letter-spacing:-.01em;">Administrative Support</h3>
+        <p class="jost" style="font-size:.88rem; color:rgba(247,242,234,.52); line-height:1.7; font-weight:300;">Reliable back-office ops — data entry, document prep, and process coordination done right.</p>
+        <div class="jost" style="margin-top:16px; font-size:.78rem; color:var(--navy-mid); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Learn more →</div>
+      </div>
+    </div>
+
+    <div class="card fu d2">
+      <div style="padding:28px;">
+        <div class="icon-wrap" style="background:rgba(122,171,132,.14); margin-bottom:16px;">
+          <svg width="22" height="22" fill="none" stroke="#7aab84" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--ivory); margin-bottom:8px; letter-spacing:-.01em;">Customer Service</h3>
+        <p class="jost" style="font-size:.88rem; color:rgba(247,242,234,.52); line-height:1.7; font-weight:300;">Warm, professional support via chat, email, or phone — representing your brand with genuine care.</p>
+        <div class="jost" style="margin-top:16px; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Learn more →</div>
+      </div>
+    </div>
+
+    <div class="card fu">
+      <div style="padding:28px;">
+        <div class="icon-wrap" style="background:rgba(58,106,154,.15); margin-bottom:16px;">
+          <svg width="22" height="22" fill="none" stroke="#3a6a9a" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--ivory); margin-bottom:8px; letter-spacing:-.01em;">Social Media Management</h3>
+        <p class="jost" style="font-size:.88rem; color:rgba(247,242,234,.52); line-height:1.7; font-weight:300;">Consistent, on-brand content and community management to grow your online presence.</p>
+        <div class="jost" style="margin-top:16px; font-size:.78rem; color:var(--navy-mid); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Learn more →</div>
+      </div>
+    </div>
+
+    <div class="card fu d1">
+      <div style="padding:28px;">
+        <div class="icon-wrap" style="background:rgba(122,171,132,.14); margin-bottom:16px;">
+          <svg width="22" height="22" fill="none" stroke="#7aab84" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--ivory); margin-bottom:8px; letter-spacing:-.01em;">Content Creation</h3>
+        <p class="jost" style="font-size:.88rem; color:rgba(247,242,234,.52); line-height:1.7; font-weight:300;">Compelling blog posts, copy, and creatives crafted to communicate your message with clarity.</p>
+        <div class="jost" style="margin-top:16px; font-size:.78rem; color:var(--sage); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Learn more →</div>
+      </div>
+    </div>
+
+    <div class="card fu d2">
+      <div style="padding:28px;">
+        <div class="icon-wrap" style="background:rgba(58,106,154,.15); margin-bottom:16px;">
+          <svg width="22" height="22" fill="none" stroke="#3a6a9a" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--ivory); margin-bottom:8px; letter-spacing:-.01em;">Data Entry & Research</h3>
+        <p class="jost" style="font-size:.88rem; color:rgba(247,242,234,.52); line-height:1.7; font-weight:300;">Accurate data management and market research to keep your business organized and informed.</p>
+        <div class="jost" style="margin-top:16px; font-size:.78rem; color:var(--navy-mid); font-weight:600; letter-spacing:.06em; text-transform:uppercase;">Learn more →</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── DIVIDER ── -->
+<div style="padding:0 24px;"><hr class="hr-glow"></div>
+
+
+<!-- ── WHY US ── -->
+<section id="why-us" style="padding:100px 24px; max-width:1200px; margin:0 auto;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+
+    <!-- Left -->
+    <div>
+      <div class="badge fu" style="margin-bottom:20px;">Why Kingdom Works</div>
+      <h2 class="h2 fu d1" style="margin-bottom:20px;">Where faith meets<br><span class="grad-text">professional excellence.</span></h2>
+      <p class="jost fu d2" style="color:rgba(247,242,234,.58); line-height:1.75; margin-bottom:32px; font-size:1rem; font-weight:300;">We're not just another outsourcing agency. Every member of our team carries a commitment to Colossians 3:23 — working with all their heart, as for the Lord.</p>
+
+      <div class="fu d3" style="display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="check-circle">
+            <svg width="12" height="12" fill="none" stroke="#7aab84" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <div class="jost" style="font-weight:600; margin-bottom:4px; font-size:.95rem;">Faith-driven work ethic</div>
+            <div class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); font-weight:300;">Every task approached as service to God, not just a client.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="check-circle">
+            <svg width="12" height="12" fill="none" stroke="#7aab84" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <div class="jost" style="font-weight:600; margin-bottom:4px; font-size:.95rem;">Rigorous quality standards</div>
+            <div class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); font-weight:300;">Consistent, high-quality output with clear communication at every step.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="check-circle">
+            <svg width="12" height="12" fill="none" stroke="#7aab84" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <div class="jost" style="font-weight:600; margin-bottom:4px; font-size:.95rem;">Long-term trusted partnership</div>
+            <div class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); font-weight:300;">Built on transparency, honesty, and a genuine investment in your success.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: stat tiles -->
+    <div class="fu d2" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="background:rgba(27,58,92,.35); border:1px solid rgba(58,106,154,.3); border-radius:16px; padding:24px; grid-column:span 2;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:700; background:linear-gradient(135deg,#3a6a9a,#7aab84); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1;">98%</div>
+        <div class="jost" style="font-size:.875rem; color:rgba(247,242,234,.55); margin-top:6px; font-weight:300;">Client satisfaction across all engagements</div>
+      </div>
+      <div style="background:rgba(247,242,234,.03); border:1px solid rgba(247,242,234,.08); border-radius:16px; padding:24px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; color:#7aab84; line-height:1;">100+</div>
+        <div class="jost" style="font-size:.82rem; color:rgba(247,242,234,.48); margin-top:6px; font-weight:300;">Happy clients worldwide</div>
+      </div>
+      <div style="background:rgba(247,242,234,.03); border:1px solid rgba(247,242,234,.08); border-radius:16px; padding:24px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; color:#f0e6d0; line-height:1;">5+</div>
+        <div class="jost" style="font-size:.82rem; color:rgba(247,242,234,.48); margin-top:6px; font-weight:300;">Years serving businesses</div>
+      </div>
+      <div style="background:rgba(122,171,132,.07); border:1px solid rgba(122,171,132,.18); border-radius:16px; padding:24px; grid-column:span 2;">
+        <div class="jost" style="font-size:.72rem; color:#7aab84; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px;">Colossians 3:23</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(247,242,234,.72); font-style:italic; line-height:1.65;">"Whatever you do, work at it with all your heart, as working for the Lord."</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── DIVIDER ── -->
+<div style="padding:0 24px;"><hr class="hr-glow"></div>
+
+
+<!-- ── PROCESS ── -->
+<section id="process" style="padding:100px 24px; max-width:1200px; margin:0 auto;">
+  <div class="fu" style="text-align:center; margin-bottom:72px;">
+    <div class="badge" style="margin:0 auto 16px;">How It Works</div>
+    <h2 class="h2" style="margin-bottom:16px;">Getting started is <span class="grad-text">simple.</span></h2>
+    <p class="jost" style="color:rgba(247,242,234,.52); max-width:460px; margin:0 auto; font-size:1rem; line-height:1.7; font-weight:300;">Three steps to your dedicated team of faith-driven professionals.</p>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+
+    <div class="fu" style="padding:32px; background:rgba(247,242,234,.02); border:1px solid rgba(247,242,234,.07); border-radius:20px;">
+      <div class="step-num" style="margin-bottom:20px;">01</div>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; margin-bottom:12px; color:var(--ivory);">Tell Us Your Needs</h3>
+      <p class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); line-height:1.75; font-weight:300;">Fill out our contact form or book a discovery call. Share your requirements and we'll listen carefully to understand your goals.</p>
+    </div>
+
+    <div class="fu d1" style="padding:32px; background:rgba(27,58,92,.2); border:1px solid rgba(58,106,154,.28); border-radius:20px;">
+      <div class="step-num" style="margin-bottom:20px;">02</div>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; margin-bottom:12px; color:var(--ivory);">We Build Your Team</h3>
+      <p class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); line-height:1.75; font-weight:300;">We hand-pick skilled, vetted professionals — selected not just for ability, but for character, integrity, and work ethic.</p>
+    </div>
+
+    <div class="fu d2" style="padding:32px; background:rgba(122,171,132,.05); border:1px solid rgba(122,171,132,.18); border-radius:20px;">
+      <div class="step-num" style="margin-bottom:20px;">03</div>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; margin-bottom:12px; color:var(--ivory);">Results, Delivered</h3>
+      <p class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); line-height:1.75; font-weight:300;">Your team hits the ground running — delivering consistent, high-quality work that moves your business forward every day.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials" style="padding:100px 24px; background:rgba(27,58,92,.12); border-top:1px solid rgba(247,242,234,.05); border-bottom:1px solid rgba(247,242,234,.05);">
+  <div style="max-width:1200px; margin:0 auto;">
+
+    <div class="fu" style="text-align:center; margin-bottom:64px;">
+      <div class="badge" style="margin:0 auto 16px;">Testimonials</div>
+      <h2 class="h2">What our clients <span class="grad-text">are saying.</span></h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+
+      <div class="tcard fu">
+        <div style="margin-bottom:14px; color:#7aab84; font-size:1rem; letter-spacing:2px;">★★★★★</div>
+        <blockquote style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(247,242,234,.8); line-height:1.7; margin-bottom:20px; font-style:italic;">"Kingdom Works completely transformed how I run my business. Their VA team is meticulous, proactive, and genuinely cares about doing a great job."</blockquote>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#1b3a5c,#7aab84); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.1rem; flex-shrink:0;">S</div>
+          <div>
+            <div class="jost" style="font-weight:600; font-size:.875rem;">Sarah M.</div>
+            <div class="jost" style="font-size:.75rem; color:rgba(247,242,234,.38);">E-Commerce Business Owner</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tcard fu d1">
+        <div style="margin-bottom:14px; color:#7aab84; font-size:1rem; letter-spacing:2px;">★★★★★</div>
+        <blockquote style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(247,242,234,.8); line-height:1.7; margin-bottom:20px; font-style:italic;">"The level of professionalism is truly exceptional. What sets them apart is their heart — you can tell they take pride in everything they do."</blockquote>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#3a6a9a,#1b3a5c); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.1rem; flex-shrink:0;">J</div>
+          <div>
+            <div class="jost" style="font-weight:600; font-size:.875rem;">James T.</div>
+            <div class="jost" style="font-size:.75rem; color:rgba(247,242,234,.38);">Marketing Consultant</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tcard fu d2">
+        <div style="margin-bottom:14px; color:#7aab84; font-size:1rem; letter-spacing:2px;">★★★★★</div>
+        <blockquote style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(247,242,234,.8); line-height:1.7; margin-bottom:20px; font-style:italic;">"I've worked with several outsourcing agencies and Kingdom Works is in a league of its own. Honest, reliable, and the work quality speaks for itself."</blockquote>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#7aab84,#3a6a9a); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.1rem; flex-shrink:0;">A</div>
+          <div>
+            <div class="jost" style="font-weight:600; font-size:.875rem;">Amanda R.</div>
+            <div class="jost" style="font-size:.75rem; color:rgba(247,242,234,.38);">Startup Founder</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CONTACT ── -->
+<section id="contact" style="padding:100px 24px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(27,58,92,0.3) 0%, transparent 65%); pointer-events:none;"></div>
+
+  <div style="max-width:1100px; margin:0 auto; position:relative; z-index:10;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+
+      <!-- Left -->
+      <div>
+        <div class="badge fu" style="margin-bottom:20px;">Get In Touch</div>
+        <h2 class="h2 fu d1" style="margin-bottom:16px;">Ready to build your <span class="grad-text">dream team?</span></h2>
+        <p class="jost fu d2" style="color:rgba(247,242,234,.52); line-height:1.75; margin-bottom:36px; font-weight:300;">Whether you're exploring or ready to hire, we'd love to connect. Let's talk about how Kingdom Works can serve your business.</p>
+
+        <div class="fu d3" style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="icon-wrap" style="background:rgba(122,171,132,.12); width:40px; height:40px; border-radius:10px;">
+              <svg width="18" height="18" fill="none" stroke="#7aab84" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div class="jost" style="font-size:.7rem; color:rgba(247,242,234,.32); text-transform:uppercase; letter-spacing:.12em; margin-bottom:2px;">Email</div>
+              <a href="mailto:hello@kingdomworksoutsourcing.com" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.7); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.7)'">hello@kingdomworksoutsourcing.com</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo + tagline block -->
+        <div class="fu d4" style="margin-top:40px; padding:20px; background:rgba(27,58,92,.25); border:1px solid rgba(58,106,154,.2); border-radius:16px; display:flex; align-items:center; gap:16px;">
+          <div style="background:#1b3a5c; border-radius:8px; line-height:0; flex-shrink:0;">
+            <img src="brand_assets/Logo.png" alt="" aria-hidden="true" style="height:52px; width:auto; display:block;">
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:700; color:var(--ivory); margin-bottom:4px;">Kingdom Works Outsourcing</div>
+            <div class="jost" style="font-size:.78rem; color:var(--sage); letter-spacing:.08em; font-style:italic;">"Excellence in Service. Led by Christ."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="fu d1">
+        <form onsubmit="handleForm(event)" style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div>
+              <label class="jost" style="display:block; font-size:.7rem; color:rgba(247,242,234,.38); text-transform:uppercase; letter-spacing:.12em; margin-bottom:8px;">First Name</label>
+              <input type="text" placeholder="John" required class="f-inp">
+            </div>
+            <div>
+              <label class="jost" style="display:block; font-size:.7rem; color:rgba(247,242,234,.38); text-transform:uppercase; letter-spacing:.12em; margin-bottom:8px;">Last Name</label>
+              <input type="text" placeholder="Smith" required class="f-inp">
+            </div>
+          </div>
+          <div>
+            <label class="jost" style="display:block; font-size:.7rem; color:rgba(247,242,234,.38); text-transform:uppercase; letter-spacing:.12em; margin-bottom:8px;">Email Address</label>
+            <input type="email" placeholder="john@company.com" required class="f-inp">
+          </div>
+          <div>
+            <label class="jost" style="display:block; font-size:.7rem; color:rgba(247,242,234,.38); text-transform:uppercase; letter-spacing:.12em; margin-bottom:8px;">Service Needed</label>
+            <select class="f-inp">
+              <option value="" style="background:#0d1f33;" disabled selected>Select a service…</option>
+              <option style="background:#0d1f33;">Virtual Assistant</option>
+              <option style="background:#0d1f33;">Administrative Support</option>
+              <option style="background:#0d1f33;">Customer Service</option>
+              <option style="background:#0d1f33;">Social Media Management</option>
+              <option style="background:#0d1f33;">Content Creation</option>
+              <option style="background:#0d1f33;">Data Entry &amp; Research</option>
+              <option style="background:#0d1f33;">Multiple Services</option>
+            </select>
+          </div>
+          <div>
+            <label class="jost" style="display:block; font-size:.7rem; color:rgba(247,242,234,.38); text-transform:uppercase; letter-spacing:.12em; margin-bottom:8px;">Message</label>
+            <textarea rows="4" placeholder="Tell us about your business and what you need help with…" class="f-inp" style="resize:none;"></textarea>
+          </div>
+          <button id="form-btn" type="submit" class="btn-primary" style="justify-content:center; padding:14px; border-radius:10px; font-size:.9rem;">
+            Send Message →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer style="border-top:1px solid rgba(247,242,234,.07); padding:52px 24px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; margin-bottom:48px;">
+
+      <!-- Brand -->
+      <div>
+        <div style="background:#1b3a5c; border-radius:8px; display:inline-block; margin-bottom:16px; line-height:0;">
+          <img src="brand_assets/Logo.png" alt="Kingdom Works Outsourcing" style="height:52px; width:auto; display:block;">
+        </div>
+        <p class="jost" style="font-size:.875rem; color:rgba(247,242,234,.42); max-width:280px; line-height:1.75; margin-bottom:16px; font-weight:300;">Excellence in Service. Led by Christ. A faith-driven outsourcing agency connecting businesses with skilled professionals worldwide.</p>
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--sage); font-size:1rem;">"Led by Christ."</div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <div class="jost" style="font-size:.7rem; color:rgba(247,242,234,.28); text-transform:uppercase; letter-spacing:.14em; margin-bottom:16px;">Services</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Virtual Assistant</a>
+          <a href="#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Admin Support</a>
+          <a href="#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Customer Service</a>
+          <a href="#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Social Media</a>
+          <a href="#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Content Creation</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div class="jost" style="font-size:.7rem; color:rgba(247,242,234,.28); text-transform:uppercase; letter-spacing:.14em; margin-bottom:16px;">Company</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="#why-us"       class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Why Us</a>
+          <a href="#process"      class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Our Process</a>
+          <a href="#testimonials" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Testimonials</a>
+          <a href="#contact"      class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Contact Us</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="padding-top:24px; border-top:1px solid rgba(247,242,234,.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <span class="jost" style="font-size:.78rem; color:rgba(247,242,234,.22);">© 2024 Kingdom Works Outsourcing. All rights reserved.</span>
+      <span class="jost" style="font-size:.78rem; color:rgba(247,242,234,.22);">Excellence in Service. Led by Christ.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // Desktop nav visibility
+  function navLayout() {
+    const w = window.innerWidth;
+    document.getElementById('nav-links').style.display = w >= 768 ? 'flex' : 'none';
+    document.getElementById('nav-cta').style.display   = w >= 768 ? 'flex' : 'none';
+    document.getElementById('ham').style.display       = w >= 768 ? 'none' : 'flex';
+  }
+  navLayout();
+  window.addEventListener('resize', navLayout);
+
+  // Show decorative cross on large screens
+  if (window.innerWidth >= 1100) document.getElementById('deco-cross').style.display = 'block';
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Hamburger
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mob-menu');
+  ham.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    document.getElementById('ham-open').style.display  = open ? 'none'  : 'block';
+    document.getElementById('ham-close').style.display = open ? 'block' : 'none';
+  });
+  document.querySelectorAll('.mob-l').forEach(l => l.addEventListener('click', () => {
+    mob.classList.remove('open');
+    document.getElementById('ham-open').style.display  = 'block';
+    document.getElementById('ham-close').style.display = 'none';
+  }));
+
+  // Scroll fade-up
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+
+  // Form
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('form-btn');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#1b3a5c';
+    btn.style.color = '#7aab84';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
