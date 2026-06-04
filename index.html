@@ -258,6 +258,42 @@
     }
     .jost { font-family: 'Jost', sans-serif; }
 
+    /* Spotlight card glow */
+    [data-glow] { position: relative; isolation: isolate; }
+    [data-glow]::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 17px;
+      padding: 1px;
+      background: radial-gradient(
+        260px 260px at calc(var(--x, -999) * 1px) calc(var(--y, -999) * 1px),
+        hsl(calc(145 + var(--xp, 0.5) * 70) 65% 58% / 0.65),
+        transparent 80%
+      );
+      background-attachment: fixed;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    [data-glow]:hover::before { opacity: 1; }
+    [data-glow]::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: radial-gradient(
+        300px 300px at calc(var(--x, -999) * 1px) calc(var(--y, -999) * 1px),
+        hsl(calc(145 + var(--xp, 0.5) * 70) 75% 62% / 0.07),
+        transparent 80%
+      );
+      background-attachment: fixed;
+      pointer-events: none;
+    }
+
     /* Checklist check */
     .check-circle {
       width: 24px; height: 24px;
@@ -878,6 +914,15 @@
       e.target.reset();
     }, 3000);
   }
+
+  // Spotlight glow on service cards
+  document.querySelectorAll('#services .card').forEach(c => c.setAttribute('data-glow', ''));
+  document.addEventListener('pointermove', e => {
+    document.documentElement.style.setProperty('--x', e.clientX);
+    document.documentElement.style.setProperty('--xp', (e.clientX / window.innerWidth).toFixed(3));
+    document.documentElement.style.setProperty('--y', e.clientY);
+    document.documentElement.style.setProperty('--yp', (e.clientY / window.innerHeight).toFixed(3));
+  });
 
   // Beams background
   (function () {
