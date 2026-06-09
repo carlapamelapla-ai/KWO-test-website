@@ -258,6 +258,30 @@
     }
     .jost { font-family: 'Jost', sans-serif; }
 
+    /* Founding clients notice */
+    .founding {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(122,171,132,.1);
+      border: 1px solid rgba(122,171,132,.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: .8rem; font-weight: 500;
+      color: rgba(247,242,234,.7);
+      letter-spacing: .02em;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #7aab84;
+      box-shadow: 0 0 6px #7aab84, 0 0 12px rgba(122,171,132,.5);
+      animation: dotPulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(.85); }
+    }
+
     /* Spotlight card glow */
     [data-glow] { position: relative; isolation: isolate; }
     [data-glow]::before {
@@ -387,9 +411,16 @@
       Kingdom Works Outsourcing connects businesses worldwide with skilled, faith-driven Filipino professionals — delivering high-quality work, on time, every time.
     </p>
 
-    <div class="fu d3" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:56px;">
+    <div class="fu d3" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:16px;">
       <a href="#contact" class="btn-primary">Book A Free Discovery Call</a>
       <a href="#services" class="btn-outline">Get the Free Delegation Audit</a>
+    </div>
+
+    <div class="fu d3" style="margin-bottom:40px;">
+      <span class="founding">
+        <span class="dot"></span>
+        Now onboarding founding clients — today's rate locked for 12 months.
+      </span>
     </div>
 
     <!-- Stats pills -->
