@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 
   <style>
     /* ── Brand tokens ── */
@@ -330,6 +331,22 @@
       pointer-events: none;
     }
 
+    /* Dashboard timeline */
+    .db-timeline { margin-top:14px; background:rgba(13,31,51,.5); border:1px solid rgba(247,242,234,.07); border-radius:10px; padding:14px 18px; }
+    .db-timeline-title { font-family:'Jost',sans-serif; font-size:.68rem; color:rgba(247,242,234,.3); text-transform:uppercase; letter-spacing:.1em; margin-bottom:12px; }
+    .tl { display:flex; align-items:flex-start; gap:0; }
+    .tl-step { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; }
+    .tl-step:not(:last-child)::after { content:''; position:absolute; top:11px; left:50%; width:100%; height:1px; background:rgba(247,242,234,.1); z-index:0; }
+    .tl-step:not(:last-child).green::after { background:rgba(122,171,132,.4); }
+    .tl-dot { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.7rem; position:relative; z-index:1; flex-shrink:0; }
+    .tl-dot.green { background:rgba(122,171,132,.25); border:1px solid rgba(122,171,132,.6); color:#7aab84; }
+    .tl-dot.blue  { background:rgba(58,106,154,.25);  border:1px solid rgba(58,106,154,.6);  color:#3a6a9a; }
+    .tl-dot.dim   { background:rgba(247,242,234,.04); border:1px solid rgba(247,242,234,.1);  color:rgba(247,242,234,.2); }
+    .tl-label { font-family:'Jost',sans-serif; font-size:.68rem; font-weight:600; color:rgba(247,242,234,.75); margin-top:5px; text-align:center; line-height:1.3; }
+    .tl-label.dim { color:rgba(247,242,234,.25); }
+    .tl-sub { font-family:'Jost',sans-serif; font-size:.62rem; color:rgba(247,242,234,.35); text-align:center; line-height:1.3; margin-top:2px; }
+    .tl-sub.dim { color:rgba(247,242,234,.18); }
+
     /* Checklist check */
     .check-circle {
       width: 24px; height: 24px;
@@ -524,6 +541,44 @@
           </div>
         </div>
       </div>
+
+      <!-- Journey timeline -->
+      <div class="db-timeline">
+        <div class="db-timeline-title">Your Journey — What to Expect</div>
+        <div class="tl">
+          <div class="tl-step green">
+            <div class="tl-dot green"><i class="ti ti-phone"></i></div>
+            <div class="tl-label">Discovery call</div>
+            <div class="tl-sub">We listen, you share</div>
+          </div>
+          <div class="tl-step green">
+            <div class="tl-dot green"><i class="ti ti-user-check"></i></div>
+            <div class="tl-label">We hand-pick</div>
+            <div class="tl-sub">Skill + character vetted</div>
+          </div>
+          <div class="tl-step green">
+            <div class="tl-dot green"><i class="ti ti-heart-handshake"></i></div>
+            <div class="tl-label">Values matched</div>
+            <div class="tl-sub">Character, not just skill</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot blue"><i class="ti ti-users"></i></div>
+            <div class="tl-label">Smooth onboarding</div>
+            <div class="tl-sub">We brief them on you</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot dim"><i class="ti ti-writing"></i></div>
+            <div class="tl-label dim">Agreement signed</div>
+            <div class="tl-sub dim">Clear terms, no surprises</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot dim"><i class="ti ti-rocket"></i></div>
+            <div class="tl-label dim">Results delivered</div>
+            <div class="tl-sub dim">Supervised, ongoing</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
