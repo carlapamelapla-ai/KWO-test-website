@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Plans — Kingdom Works Outsourcing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:         #0d1f33;
+      --navy:       #1b3a5c;
+      --navy-mid:   #3a6a9a;
+      --ivory:      #f7f2ea;
+      --ivory-soft: #f0e6d0;
+      --sage:       #7aab84;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { background-color: var(--bg); color: var(--ivory); font-family: 'Jost', Arial, sans-serif; font-size: 1rem; line-height: 1.5; letter-spacing: .3px; }
+    h1, h2, h3, .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(122,171,132,0.12); border: 1px solid rgba(122,171,132,0.28); border-radius: 100px; padding: 4px 14px; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--sage); letter-spacing: .08em; text-transform: uppercase; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--sage); color: var(--bg); font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.875rem; letter-spacing: .06em; padding: 12px 26px; border-radius: 100px; border: none; cursor: pointer; transition: opacity .2s, transform .15s; text-decoration: none; }
+    .btn-primary:hover { opacity: .85; }
+    .btn-primary:active { transform: scale(.97); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--ivory); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.875rem; letter-spacing: .04em; padding: 11px 26px; border-radius: 100px; border: 1px solid rgba(247,242,234,0.22); cursor: pointer; transition: border-color .2s, background .2s; text-decoration: none; }
+    .btn-outline:hover { border-color: rgba(247,242,234,0.5); background: rgba(247,242,234,0.05); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(247,242,234,.7); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.875rem; letter-spacing: .04em; padding: 11px 4px; border: none; border-bottom: 1px solid rgba(247,242,234,.25); border-radius: 0; cursor: pointer; text-decoration: none; transition: color .2s, border-color .2s; }
+    .btn-ghost:hover { color: var(--ivory); border-color: rgba(247,242,234,.6); }
+    .grad-text { background: linear-gradient(135deg, var(--ivory) 0%, var(--ivory-soft) 45%, var(--sage) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hr-glow { border: none; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(58,106,154,0.45) 40%, rgba(122,171,132,0.4) 60%, transparent 100%); }
+    .jost { font-family: 'Jost', sans-serif; }
+    .h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.8rem, 6.5vw, 5rem); font-weight: 700; line-height: 1.06; letter-spacing: -.03em; }
+    .h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
+    .stars { position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, rgba(247,242,234,0.14) 0%, transparent 100%), radial-gradient(1px 1px at 80% 10%, rgba(247,242,234,0.10) 0%, transparent 100%), radial-gradient(1px 1px at 55% 65%, rgba(122,171,132,0.12) 0%, transparent 100%); pointer-events: none; }
+
+    .fu { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1); }
+    .fu.vis { opacity: 1; transform: none; }
+    .d1 { transition-delay: .07s; } .d2 { transition-delay: .14s; } .d3 { transition-delay: .21s; } .d4 { transition-delay: .28s; }
+
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s, backdrop-filter .3s; }
+    #nav.scrolled { background: rgba(13,31,51,0.92); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(247,242,234,0.07); }
+    #mob-menu { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    #mob-menu.open { max-height: 480px; }
+
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #7aab84; box-shadow: 0 0 6px #7aab84, 0 0 12px rgba(122,171,132,.5); animation: dotPulse 2s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes dotPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .6; transform: scale(.85); } }
+
+    /* Currency toggle */
+    .curr-toggle { display: inline-flex; background: rgba(247,242,234,.04); border: 1px solid rgba(247,242,234,.1); border-radius: 100px; padding: 4px; gap: 2px; }
+    .curr-btn { padding: 7px 18px; border-radius: 100px; border: none; background: transparent; color: rgba(247,242,234,.45); font-family: 'Jost', sans-serif; font-size: .8rem; font-weight: 500; cursor: pointer; transition: all .2s; letter-spacing: .03em; }
+    .curr-btn.active { background: var(--navy); color: var(--ivory); box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+    .curr-btn:hover:not(.active) { color: rgba(247,242,234,.8); }
+
+    /* Pricing cards */
+    .plan-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1100px; margin: 0 auto; align-items: start; }
+
+    .plan-card { border-radius: 20px; padding: 36px 32px 40px; position: relative; border: 1px solid rgba(247,242,234,.08); background: rgba(247,242,234,.02); transition: border-color .25s; }
+    .plan-card:hover { border-color: rgba(122,171,132,.3); }
+    .plan-card.featured { background: var(--navy); border: 2px solid var(--sage); margin-top: -12px; padding-top: 52px; padding-bottom: 52px; }
+    .plan-card.featured:hover { border-color: #7aab84; }
+    .plan-card.premium { border-top: 2px solid var(--sage); }
+
+    .plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); padding: 5px 18px; border-radius: 100px; white-space: nowrap; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .plan-tier { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; color: rgba(247,242,234,.35); }
+    .featured .plan-tier { color: rgba(122,171,132,.7); }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; line-height: 1.1; margin-bottom: 4px; color: var(--ivory); }
+    .plan-verse { font-size: .78rem; font-weight: 300; font-style: italic; margin-bottom: 20px; color: rgba(247,242,234,.35); line-height: 1.5; }
+    .featured .plan-verse { color: rgba(247,242,234,.45); }
+
+    .plan-price { margin-bottom: 6px; }
+    .price-amt { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 700; line-height: 1; letter-spacing: -.02em; color: var(--ivory); }
+    .price-amt.sage { background: linear-gradient(135deg, var(--ivory) 0%, var(--sage) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .price-per { font-size: .85rem; font-weight: 300; color: rgba(247,242,234,.45); vertical-align: middle; }
+
+    .plan-for { font-size: .85rem; font-weight: 300; line-height: 1.65; padding: 14px 0; border-top: 1px solid rgba(247,242,234,.07); border-bottom: 1px solid rgba(247,242,234,.07); margin-bottom: 20px; color: rgba(247,242,234,.55); }
+    .featured .plan-for { border-color: rgba(247,242,234,.12); color: rgba(247,242,234,.7); }
+
+    .plan-features { list-style: none; margin-bottom: 28px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: .875rem; font-weight: 300; line-height: 1.55; padding: 7px 0; border-bottom: 1px solid rgba(247,242,234,.05); color: rgba(247,242,234,.7); }
+    .featured .plan-features li { color: rgba(247,242,234,.85); border-color: rgba(247,242,234,.1); }
+    .plan-features li:last-child { border-bottom: none; }
+    .check-c { width: 18px; height: 18px; border-radius: 50%; background: rgba(122,171,132,.15); border: 1px solid rgba(122,171,132,.32); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: .6rem; font-weight: 700; color: var(--sage); }
+
+    .plan-cta-full { display: block; text-align: center; text-decoration: none; padding: 14px 24px; border-radius: 100px; font-family: 'Jost', sans-serif; font-size: .9rem; font-weight: 600; letter-spacing: .04em; transition: opacity .2s, transform .15s; }
+    .plan-cta-full:hover { opacity: .85; }
+    .plan-cta-full:active { transform: scale(.97); }
+    .cta-sage { background: var(--sage); color: var(--bg); }
+    .cta-outline { background: transparent; border: 1px solid rgba(247,242,234,.2); color: var(--ivory); }
+    .cta-outline:hover { border-color: rgba(247,242,234,.45); background: rgba(247,242,234,.04); }
+
+    .plan-note { text-align: center; font-size: .75rem; margin-top: 10px; font-weight: 300; color: rgba(247,242,234,.3); }
+    .featured .plan-note { color: rgba(247,242,234,.4); }
+
+    /* Inclusions */
+    .incl-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .incl-item { background: rgba(247,242,234,.02); border: 1px solid rgba(247,242,234,.07); border-radius: 14px; padding: 22px 20px; display: flex; align-items: flex-start; gap: 14px; transition: border-color .25s; }
+    .incl-item:hover { border-color: rgba(122,171,132,.25); }
+    .incl-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(122,171,132,.12); border: 1px solid rgba(122,171,132,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--sage); font-size: 1rem; }
+    .incl-title { font-size: .875rem; font-weight: 600; color: var(--ivory); margin-bottom: 4px; }
+    .incl-desc { font-size: .8rem; color: rgba(247,242,234,.42); line-height: 1.6; font-weight: 300; }
+
+    /* FAQ accordion */
+    .faq-item { border: 1px solid rgba(247,242,234,.07); border-radius: 14px; overflow: hidden; transition: border-color .3s; }
+    .faq-item:hover { border-color: rgba(122,171,132,.25); }
+    .faq-item.open { border-color: rgba(122,171,132,.32); background: rgba(122,171,132,.03); }
+    .faq-q-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 26px; background: none; border: none; cursor: pointer; text-align: left; }
+    .faq-q-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--ivory); line-height: 1.3; }
+    .faq-icon { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(122,171,132,.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .25s, transform .35s; }
+    .faq-item.open .faq-icon { background: rgba(122,171,132,.12); transform: rotate(45deg); }
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-body-inner { padding: 0 26px 22px; font-size: .925rem; color: rgba(247,242,234,.55); line-height: 1.8; font-weight: 300; }
+    .faq-item.open .faq-body { max-height: 300px; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; border-radius: 4px; }
+
+    @media (max-width: 900px) {
+      .plan-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+      .plan-card.featured { margin-top: 0; }
+      .incl-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .incl-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="nav">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px; height:72px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+    <a href="index.html" style="display:flex; align-items:center; flex-shrink:0;">
+      <div style="background:#1b3a5c; border-radius:8px; line-height:0;">
+        <img src="brand_assets/Logo.png" alt="Kingdom Works Outsourcing" style="height:46px; width:auto; display:block;">
+      </div>
+    </a>
+    <div id="nav-links" style="display:none; gap:32px; align-items:center;">
+      <a href="index.html#services"     class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Services</a>
+      <a href="index.html#why-us"       class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Why Us</a>
+      <a href="index.html#process"      class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Process</a>
+      <a href="index.html#testimonials" class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">Testimonials</a>
+      <a href="about.html"              class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">About</a>
+      <a href="faq.html"                class="jost" style="color:rgba(247,242,234,.65); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#f7f2ea'" onmouseout="this.style.color='rgba(247,242,234,.65)'">FAQ</a>
+      <a href="plans.html"              class="jost" style="color:#7aab84; font-size:.875rem; font-weight:600; text-decoration:none;">Plans</a>
+    </div>
+    <div id="nav-cta" style="display:none; align-items:center; gap:14px; flex-shrink:0;">
+      <a href="index.html#contact" class="btn-primary" style="padding:9px 22px; font-size:.82rem;">Get Started</a>
+    </div>
+    <button id="ham" aria-label="Toggle menu" style="background:none; border:none; cursor:pointer; color:var(--ivory); padding:4px; display:flex;">
+      <svg id="ham-open"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      <svg id="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="mob-menu" style="background:rgba(13,31,51,0.97); border-top:1px solid rgba(247,242,234,.07);">
+    <div style="max-width:1200px; margin:0 auto; padding:16px 24px 24px; display:flex; flex-direction:column; gap:4px;">
+      <a href="index.html#services"     class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Services</a>
+      <a href="index.html#why-us"       class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Why Us</a>
+      <a href="index.html#process"      class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Process</a>
+      <a href="index.html#testimonials" class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Testimonials</a>
+      <a href="about.html"              class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">About</a>
+      <a href="faq.html"                class="mob-l jost" style="color:rgba(247,242,234,.7); font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">FAQ</a>
+      <a href="plans.html"              class="mob-l jost" style="color:#7aab84; font-size:.95rem; padding:10px 0; text-decoration:none; border-bottom:1px solid rgba(247,242,234,.06);">Plans</a>
+      <a href="index.html#contact" class="btn-primary" style="margin-top:14px; justify-content:center;">Get Started →</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ── HERO ── -->
+<section style="position:relative; min-height:50vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:140px 24px 72px; overflow:hidden;">
+  <div class="stars"></div>
+  <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(247,242,234,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(247,242,234,0.02) 1px, transparent 1px); background-size:60px 60px; pointer-events:none; mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 80%);"></div>
+  <div style="position:absolute; bottom:-80px; left:50%; transform:translateX(-50%); width:900px; height:420px; background:radial-gradient(ellipse 70% 60% at 50% 100%, rgba(27,58,92,0.55) 0%, rgba(122,171,132,0.12) 55%, transparent 72%); pointer-events:none;"></div>
+  <div style="position:relative; z-index:10; max-width:680px; margin:0 auto;">
+    <div class="fu badge" style="margin-bottom:24px;">
+      <svg width="7" height="7" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+      Simple, honest pricing
+    </div>
+    <h1 class="fu d1 h1" style="margin-bottom:20px;">
+      One retainer.<br><span class="grad-text"><em style="font-style:italic;">No surprises.</em></span>
+    </h1>
+    <p class="fu d2 jost" style="font-size:clamp(1rem,2vw,1.1rem); color:rgba(247,242,234,.55); max-width:520px; margin:0 auto; line-height:1.75; font-weight:300;">
+      No recruitment fees, no hidden markups, no lock-in traps. Fair pricing is part of our integrity — and founding clients lock today's rate for 12 months.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── FOUNDING BANNER ── -->
+<div class="fu" style="background:rgba(122,171,132,.1); border-top:1px solid rgba(122,171,132,.2); border-bottom:1px solid rgba(122,171,132,.2); padding:14px 24px; text-align:center; display:flex; align-items:center; justify-content:center; gap:12px;">
+  <div class="dot"></div>
+  <p class="jost" style="font-size:.875rem; color:rgba(247,242,234,.75); font-weight:300;">Now onboarding founding clients — <span style="color:var(--sage); font-weight:600;">lock today's rate for 12 months.</span> Limited spots available.</p>
+</div>
+
+
+<div style="padding:0 24px; margin:32px 0 8px;"><hr class="hr-glow"></div>
+
+
+<!-- ── CURRENCY TOGGLE ── -->
+<div class="fu" style="text-align:center; padding:24px 24px 0;">
+  <div class="jost" style="font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(247,242,234,.28); margin-bottom:12px;">Show pricing in</div>
+  <div class="curr-toggle" role="group" aria-label="Select currency">
+    <button class="curr-btn active" onclick="setCurrency('USD',this)">USD $</button>
+    <button class="curr-btn" onclick="setCurrency('GBP',this)">GBP £</button>
+    <button class="curr-btn" onclick="setCurrency('AUD',this)">AUD $</button>
+    <button class="curr-btn" onclick="setCurrency('NZD',this)">NZD $</button>
+  </div>
+</div>
+
+
+<!-- ── PRICING CARDS ── -->
+<section style="padding:40px 24px 100px; max-width:1200px; margin:0 auto;">
+  <div class="plan-grid">
+
+    <!-- THE STEWARD -->
+    <div class="plan-card fu">
+      <div class="plan-tier">Starter</div>
+      <div class="plan-name">The Steward</div>
+      <div class="plan-verse">"Faithful in the little." — Luke 16:10</div>
+      <div class="plan-price">
+        <span class="price-amt" id="price-steward">$1,295</span>
+        <span class="price-per">/mo</span>
+      </div>
+      <div class="plan-for">For solopreneurs and small business owners drowning in admin who need a reliable, part-time right hand.</div>
+      <ul class="plan-features">
+        <li><span class="check-c">✓</span>1 dedicated VA — not shared</li>
+        <li><span class="check-c">✓</span>~20 hrs/week, your timezone</li>
+        <li><span class="check-c">✓</span>Core admin: inbox, calendar, appointments, data entry</li>
+        <li><span class="check-c">✓</span>Email support channel</li>
+        <li><span class="check-c">✓</span>Monthly check-in with KWO</li>
+        <li><span class="check-c">✓</span>Replacement guarantee</li>
+        <li><span class="check-c">✓</span>No setup or recruitment fee</li>
+      </ul>
+      <a href="index.html#contact" class="plan-cta-full cta-outline">Get started →</a>
+      <p class="plan-note">Free trial week included</p>
+    </div>
+
+    <!-- THE BUILDER (FEATURED) -->
+    <div class="plan-card featured fu d1">
+      <div class="plan-badge badge">Most Popular</div>
+      <div class="plan-tier">Growth</div>
+      <div class="plan-name">The Builder</div>
+      <div class="plan-verse">"Let your light shine." — Matthew 5:16</div>
+      <div class="plan-price">
+        <span class="price-amt sage" id="price-builder">$2,495</span>
+        <span class="price-per">/mo</span>
+      </div>
+      <div class="plan-for">For growing businesses that need a dependable, full-time professional across any one of our four service pillars.</div>
+      <ul class="plan-features">
+        <li><span class="check-c">✓</span>1 full-time dedicated professional</li>
+        <li><span class="check-c">✓</span>40 hrs/week, your timezone</li>
+        <li><span class="check-c">✓</span>Any single pillar: Admin, Marketing, Creative, or Technical</li>
+        <li><span class="check-c">✓</span>KWO QA oversight included</li>
+        <li><span class="check-c">✓</span>Bi-weekly check-ins + progress reports</li>
+        <li><span class="check-c">✓</span>Priority support</li>
+        <li><span class="check-c">✓</span>Replacement guarantee</li>
+        <li><span class="check-c">✓</span>No setup or recruitment fee</li>
+      </ul>
+      <a href="index.html#contact" class="plan-cta-full cta-sage">Get started →</a>
+      <p class="plan-note">Free trial week included</p>
+    </div>
+
+    <!-- KINGDOM PARTNER -->
+    <div class="plan-card premium fu d2">
+      <div class="plan-tier">Premium</div>
+      <div class="plan-name">Kingdom Partner</div>
+      <div class="plan-verse">"Commit to the Lord whatever you do." — Proverbs 16:3</div>
+      <div class="plan-price">
+        <span class="price-amt" id="price-partner">$3,995</span>
+        <span class="price-per">/mo</span>
+      </div>
+      <div class="plan-for">For established firms wanting a managed function, a senior specialist, or a small coordinated team — including CAD, technical drafting, and executive support.</div>
+      <ul class="plan-features">
+        <li><span class="check-c">✓</span>Senior professional or multi-role coverage</li>
+        <li><span class="check-c">✓</span>Dedicated success manager</li>
+        <li><span class="check-c">✓</span>AI-augmented workflows</li>
+        <li><span class="check-c">✓</span>Weekly strategy check-ins</li>
+        <li><span class="check-c">✓</span>Custom SOPs built for your business</li>
+        <li><span class="check-c">✓</span>Fastest response &amp; priority escalation</li>
+        <li><span class="check-c">✓</span>Replacement guarantee</li>
+        <li><span class="check-c">✓</span>No setup or recruitment fee</li>
+      </ul>
+      <a href="index.html#contact" class="plan-cta-full cta-outline">Talk to us →</a>
+      <p class="plan-note">Free trial week included · Custom scoping available</p>
+    </div>
+
+  </div>
+</section>
+
+
+<div style="padding:0 24px;"><hr class="hr-glow"></div>
+
+
+<!-- ── ALL PLANS INCLUDE ── -->
+<section style="padding:80px 24px; max-width:1200px; margin:0 auto;">
+  <div class="fu" style="margin-bottom:48px;">
+    <div class="badge" style="margin-bottom:16px;">Every plan</div>
+    <h2 class="h2">What's always <span class="grad-text">included</span></h2>
+  </div>
+  <div class="incl-grid">
+
+    <div class="incl-item fu">
+      <div class="incl-icon">✦</div>
+      <div>
+        <div class="incl-title">Values-vetted talent</div>
+        <div class="incl-desc">Every professional is screened for skill and character. Faith governs how we work, ensuring integrity in every interaction.</div>
+      </div>
+    </div>
+
+    <div class="incl-item fu d1">
+      <div class="incl-icon">◎</div>
+      <div>
+        <div class="incl-title">Timezone alignment</div>
+        <div class="incl-desc">Your team works your hours. Filipino professionals are well-practiced in US, UK, AU, and NZ schedules with seamless overlap.</div>
+      </div>
+    </div>
+
+    <div class="incl-item fu d2">
+      <div class="incl-icon">⟳</div>
+      <div>
+        <div class="incl-title">Replacement guarantee</div>
+        <div class="incl-desc">Not the right fit? We re-match you at no cost. You should never be stuck with someone who isn't working out.</div>
+      </div>
+    </div>
+
+    <div class="incl-item fu d3">
+      <div class="incl-icon">◇</div>
+      <div>
+        <div class="incl-title">Free trial week</div>
+        <div class="incl-desc">See the fit before any monthly commitment begins. No risk, no pressure — just a week to see how it feels.</div>
+      </div>
+    </div>
+
+    <div class="incl-item fu d1">
+      <div class="incl-icon">$</div>
+      <div>
+        <div class="incl-title">No setup fees, ever</div>
+        <div class="incl-desc">One transparent monthly retainer. No recruitment markups, no onboarding charges, no hidden extras. Fair pricing is a value, not a feature.</div>
+      </div>
+    </div>
+
+    <div class="incl-item fu d2">
+      <div class="incl-icon">✶</div>
+      <div>
+        <div class="incl-title">Founder-led onboarding</div>
+        <div class="incl-desc">Founding clients get the founders — not a ticket queue. Carla, Felix, or Petchie will personally brief your placement on your business.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div style="padding:0 24px;"><hr class="hr-glow"></div>
+
+
+<!-- ── FAQ ── -->
+<section style="padding:80px 24px; max-width:760px; margin:0 auto;">
+  <div class="fu" style="margin-bottom:48px;">
+    <div class="badge" style="margin-bottom:16px;">Common questions</div>
+    <h2 class="h2">The questions we <span class="grad-text"><em style="font-style:italic;">know you're thinking</em></span></h2>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:10px;">
+
+    <div class="faq-item fu">
+      <button class="faq-q-btn" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Why not just use AI tools instead?</span>
+        <span class="faq-icon"><svg width="13" height="13" fill="none" stroke="#7aab84" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">AI handles tasks — it doesn't own outcomes. Our professionals are AI-fluent: they use today's tools to move faster, but a real person still reviews the work, makes the judgment call, and takes responsibility for the result. You get the speed of AI with the accountability of a teammate. Many of our clients tried AI-only first. They came to us for what AI couldn't provide: someone who actually cares about their business.</div></div>
+    </div>
+
+    <div class="faq-item fu d1">
+      <button class="faq-q-btn" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Why not hire a cheaper freelancer on Upwork or OnlineJobs.PH?</span>
+        <span class="faq-icon"><svg width="13" height="13" fill="none" stroke="#7aab84" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">With a freelancer, you're the manager — you vet, onboard, train, and replace them alone when things go wrong. With KWO, that's our job. We supervise, run QA, and guarantee a replacement at no cost. Our clients pay a modest premium for one thing: not having to manage the managing. If your time is worth anything, that math works.</div></div>
+    </div>
+
+    <div class="faq-item fu d2">
+      <button class="faq-q-btn" onclick="toggleFaq(this)">
+        <span class="faq-q-text">You're new — how do I know I can trust you?</span>
+        <span class="faq-icon"><svg width="13" height="13" fill="none" stroke="#7aab84" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">That's exactly why we offer a free trial week, a replacement guarantee, and no lock-in contract. We don't ask you to take our word for it — we remove the risk so you can experience it. Our founders bring 10+ years of combined experience in VA work, real estate, life insurance, and operations. And our faith isn't a marketing angle: Proverbs 22:1 says a good name is worth more than riches. We intend to earn ours.</div></div>
+    </div>
+
+    <div class="faq-item fu d3">
+      <button class="faq-q-btn" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is KWO only for Christian or faith-based businesses?</span>
+        <span class="faq-icon"><svg width="13" height="13" fill="none" stroke="#7aab84" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">No. Faith governs how we work — our diligence, honesty, and servant-leadership approach — not who we serve. Every client receives the same standard of excellence regardless of background, belief, or industry. If you want a team you can trust to do the right thing even when no one's watching, we're a good fit.</div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<div style="padding:0 24px;"><hr class="hr-glow"></div>
+
+
+<!-- ── FINAL CTA ── -->
+<section style="padding:100px 24px; text-align:center; position:relative; overflow:hidden;">
+  <div class="stars"></div>
+  <div style="position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:800px; height:360px; background:radial-gradient(ellipse 70% 60% at 50% 100%, rgba(27,58,92,0.5) 0%, rgba(122,171,132,0.1) 55%, transparent 72%); pointer-events:none;"></div>
+  <div style="position:relative; z-index:10; max-width:600px; margin:0 auto;">
+    <h2 class="fu h2" style="margin-bottom:16px;">Ready to build your<br><span class="grad-text"><em style="font-style:italic;">dream team?</em></span></h2>
+    <p class="fu d1 jost" style="color:rgba(247,242,234,.52); font-size:1.05rem; font-weight:300; line-height:1.75; max-width:44ch; margin:0 auto 36px;">Whether you're exploring or ready to hire, we'd love to connect. Book a free discovery call and we'll figure out together which plan fits best.</p>
+    <div class="fu d2" style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px;">
+      <a href="index.html#contact" class="btn-primary" style="font-size:.9rem; padding:13px 28px;">Book a Free Discovery Call →</a>
+      <a href="index.html#contact" class="btn-ghost">Get the Free Delegation Audit</a>
+    </div>
+    <p class="fu d3 jost" style="margin-top:36px; font-size:.82rem; color:rgba(247,242,234,.25); font-style:italic; font-family:'Cormorant Garamond',serif; font-size:1rem;">"Commit to the Lord whatever you do, and He will establish your plans." — Proverbs 16:3</p>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer style="border-top:1px solid rgba(247,242,234,.07); padding:52px 24px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; margin-bottom:48px;">
+      <div>
+        <div style="background:#1b3a5c; border-radius:8px; display:inline-block; margin-bottom:16px; line-height:0;">
+          <img src="brand_assets/Logo.png" alt="Kingdom Works Outsourcing" style="height:52px; width:auto; display:block;">
+        </div>
+        <p class="jost" style="font-size:.875rem; color:rgba(247,242,234,.42); max-width:280px; line-height:1.75; margin-bottom:16px; font-weight:300;">Excellence in Service. Led by Christ. A faith-driven outsourcing agency connecting businesses with skilled professionals worldwide.</p>
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--sage); font-size:1rem;">"Led by Christ."</div>
+      </div>
+      <div>
+        <div class="jost" style="font-size:.7rem; color:rgba(247,242,234,.28); text-transform:uppercase; letter-spacing:.14em; margin-bottom:16px;">Services</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="index.html#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Virtual Assistant</a>
+          <a href="index.html#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Admin Support</a>
+          <a href="index.html#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Customer Service</a>
+          <a href="index.html#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Social Media</a>
+          <a href="index.html#services" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Content Creation</a>
+        </div>
+      </div>
+      <div>
+        <div class="jost" style="font-size:.7rem; color:rgba(247,242,234,.28); text-transform:uppercase; letter-spacing:.14em; margin-bottom:16px;">Company</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="about.html"         class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">About Us</a>
+          <a href="faq.html"           class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">FAQ</a>
+          <a href="plans.html"         class="jost" style="font-size:.875rem; color:#7aab84; text-decoration:none; font-weight:500;">Plans</a>
+          <a href="index.html#why-us"  class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Why Us</a>
+          <a href="index.html#contact" class="jost" style="font-size:.875rem; color:rgba(247,242,234,.48); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#7aab84'" onmouseout="this.style.color='rgba(247,242,234,.48)'">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:24px; border-top:1px solid rgba(247,242,234,.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <span class="jost" style="font-size:.78rem; color:rgba(247,242,234,.22);">© 2025 Kingdom Works Outsourcing. All rights reserved.</span>
+      <span class="jost" style="font-size:.78rem; color:rgba(247,242,234,.22);">Excellence in Service. Led by Christ.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const prices = {
+    USD: { steward:'$1,295', builder:'$2,495', partner:'$3,995' },
+    GBP: { steward:'£995',   builder:'£1,950', partner:'£3,150' },
+    AUD: { steward:'A$1,995',builder:'A$3,795',partner:'A$5,995' },
+    NZD: { steward:'NZ$2,195',builder:'NZ$4,195',partner:'NZ$6,595' }
+  };
+  function setCurrency(code, btn) {
+    document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const p = prices[code];
+    document.getElementById('price-steward').textContent = p.steward;
+    document.getElementById('price-builder').textContent = p.builder;
+    document.getElementById('price-partner').textContent = p.partner;
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function navLayout() {
+    const w = window.innerWidth;
+    document.getElementById('nav-links').style.display = w >= 768 ? 'flex' : 'none';
+    document.getElementById('nav-cta').style.display   = w >= 768 ? 'flex' : 'none';
+    document.getElementById('ham').style.display       = w >= 768 ? 'none' : 'flex';
+  }
+  navLayout();
+  window.addEventListener('resize', navLayout);
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mob-menu');
+  ham.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    document.getElementById('ham-open').style.display  = open ? 'none'  : 'block';
+    document.getElementById('ham-close').style.display = open ? 'block' : 'none';
+  });
+  document.querySelectorAll('.mob-l').forEach(l => l.addEventListener('click', () => {
+    mob.classList.remove('open');
+    document.getElementById('ham-open').style.display  = 'block';
+    document.getElementById('ham-close').style.display = 'none';
+  }));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
